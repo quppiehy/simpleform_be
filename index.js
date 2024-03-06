@@ -3,6 +3,7 @@
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
+const moment = require("moment");
 
 const app = express();
 app.use(express.json());
@@ -29,7 +30,7 @@ app.get("/data", (req, res) => {
 
 app.put("/submit", (req, res) => {
   const { name, message } = req.body.fieldValues;
-  const timestamp = new Date().toISOString();
+  const timestamp = moment().utc().format("YYYY-MM-DD HH:mm:ss");
   const newData = `${timestamp}, ${name}, ${message}\n`;
 
   fs.writeFile("database.txt", newData, { flag: "a" }, (err) => {

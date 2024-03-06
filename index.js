@@ -11,6 +11,7 @@ app.use(cors());
 
 const PORT = process.env.PORT || 8080;
 
+// Welcome page for backend
 app.get("/", (req, res) => {
   res.send("This is the backend.");
 });
@@ -28,6 +29,7 @@ app.get("/data", (req, res) => {
   });
 });
 
+// Endpoint to save new entry to database.txt
 app.put("/submit", (req, res) => {
   const { name, message } = req.body.fieldValues;
   const timestamp = moment().utc().format("YYYY-MM-DD HH:mm:ss");
